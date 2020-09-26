@@ -152,23 +152,60 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Hello World</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 ></h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <p>#双链表作业总结<br>###题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode(h,x)运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。*</p>
+<p>####主要思路：<br>####进行LocateNode运算时，遍历整个链表逐一寻找data相等的结点p，每找到一个即freq自增开始遍历对链表的所有结点的freq值比较，找到比p的freq值小且前一个结点比freq值大的结点（或prior为头结点）则将p插入，p原来的prior和next进行连接，然后再进行递归寻找下一个符合条件的结点。</p>
+<pre><code>LocateNode算法函数：
+bool LocateNode(DLinkNode*&amp; L, int x) &#123;
+    DLinkNode* p = L-&gt;next;
+    while (p != NULL &amp;&amp; p-&gt;data != x) &#123;
+        p = p-&gt;next;
+    &#125;
+    if (p == NULL)
+        return false;
+    else &#123;
+        DLinkNode* q = L-&gt;next;
+        p-&gt;freq++;
+        while (q != NULL &amp;&amp; q-&gt;freq &gt;= p-&gt;freq) &#123;
+            q = q-&gt;next;
+        &#125;
+        if (q-&gt;next != NULL &amp;&amp; q-&gt;freq &lt;= p-&gt;freq) &#123;
+            p-&gt;prior-&gt;next = p-&gt;next;
+            p-&gt;next-&gt;prior = p-&gt;prior;
+            p-&gt;prior = q-&gt;prior;
+            p-&gt;next = q;
+            q-&gt;prior-&gt;next = p;
+            q-&gt;prior = p;
+        &#125;
+        LocateNode(p, x);
+    &#125;
+&#125;</code></pre>
+<p>答案思路：寻找后与前一个结点进行比较，逐步将该节点向头结点移动。</p>
+<pre><code>bool LocateNode(DLinkNode *h,ElemType x)&#123;
+    DLinkNode *p = h-&gt;next,*pre;
+    while(p!=NULL&amp;&amp;p-&gt;data!=x)
+        p = p-&gt;next;
+    if(p==NULL)
+        return false;
+    else&#123;
+        p-&gt;freq++;
+        pre = p-&gt;prior;
+        while(pre!=h&amp;&amp;pre-&gt;freq&lt;p-&gt;freq)&#123;
+            p-&gt;prior = pre-&gt;prior;
+            p-&gt;prior-&gt;next = p;
+            pre-&gt;next = p-&gt;next;
+            if(pre-&gt;next!=NULL)
+                pre-&gt;next-&gt;prior = pre;
+            p-&gt;next = pre;
+            pre-&gt;prior = p;
+            pre=p-&gt;prior;
+        &#125;
+        return true;
+    &#125;
+&#125;</code></pre>
 
             </div>
 
@@ -231,8 +268,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2020/09/25/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2020/09/25/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2020/09/26/first/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2020/09/26/first/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
