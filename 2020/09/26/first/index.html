@@ -156,8 +156,8 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <p>#双链表作业总结<br>###题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode(h,x)运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。*</p>
-<p>####主要思路：<br>####进行LocateNode运算时，遍历整个链表逐一寻找data相等的结点p，每找到一个即freq自增开始遍历对链表的所有结点的freq值比较，找到比p的freq值小且前一个结点比freq值大的结点（或prior为头结点）则将p插入，p原来的prior和next进行连接，然后再进行递归寻找下一个符合条件的结点。</p>
+                <p>#双链表作业总结#<br>##题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode(h,x)运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。##</p>
+<p>####主要思路：####<br>####进行LocateNode运算时，遍历整个链表逐一寻找data相等的结点p，每找到一个即freq自增开始遍历对链表的所有结点的freq值比较，找到比p的freq值小且前一个结点比freq值大的结点（或prior为头结点）则将p插入，p原来的prior和next进行连接，然后再进行递归寻找下一个符合条件的结点。####</p>
 <pre><code>LocateNode算法函数：
 bool LocateNode(DLinkNode*&amp; L, int x) &#123;
     DLinkNode* p = L-&gt;next;
