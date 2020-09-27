@@ -151,13 +151,96 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/09/28/UmSrM7uw9pWOdEG.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
                 <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 ></h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <p>#INDEX</p>
+                <h1 id="9-28-JS学习笔记"><a href="#9-28-JS学习笔记" class="headerlink" title="9.28 JS学习笔记"></a>9.28 JS学习笔记</h1><h2 id="一、this的作用域判别"><a href="#一、this的作用域判别" class="headerlink" title="一、this的作用域判别"></a>一、this的作用域判别</h2><pre><code>var o = &#123;
+    m:function () &#123;
+    var self = this;
+    console.log(this === o);  //输出为true
+    f();
+    function f() &#123;
+        console.log(this === o);//该处this的值为全局对象或undefined，输出false
+        console.log(this.a);
+        console.log(self === o); //输出为true
+        &#125;
+    &#125;,
+    a:1
+&#125;;
+o.m(); </code></pre>
+<p>this在改对象的属性嵌套函数中，子函数的this所指与父函数的this不同，为全局对象或undefined,而父函数则为该对象。</p>
+<h2 id="二-参数列表的使用"><a href="#二-参数列表的使用" class="headerlink" title="二.参数列表的使用"></a>二.参数列表的使用</h2><pre><code>function max(/*...*/)&#123;
+    var max = Number.NEGATIVE_INFINITY;
+    for(var i = 0;i&lt;arguments.length;i++)&#123;
+        if(max &lt; arguments[i]) max = arguments[i];
+       &#125;
+    return max;
+&#125;
 
+var a = max(1,3,5,7,9,555,10002,654);
+console.log(a);   //操作参数列表，使用任意数目参数</code></pre>
+<p>参数列表作为一个数组，可以使得函数可以接受超出给出参数数量的参数进行运算。</p>
+<h2 id="三-函数的属性"><a href="#三-函数的属性" class="headerlink" title="三.函数的属性"></a>三.函数的属性</h2><pre><code>uniqueInteger.counter = 0;
+function uniqueInteger()&#123;
+    return uniqueInteger.counter++;
+&#125;
+
+console.log(uniqueInteger()); //输出0
+console.log(uniqueInteger()); //输出1</code></pre>
+<p>函数可以设定一个值作为属性（？），且属性值并不会不变，可以进行存储、保留</p>
+<h2 id="四-函数作用域声明"><a href="#四-函数作用域声明" class="headerlink" title="四.函数作用域声明"></a>四.函数作用域声明</h2><pre><code>var scope = &quot;global scope&quot;;
+function checkscope()&#123;
+    var scope = &quot;local scope&quot;;
+    function f()&#123;
+        return scope;
+       &#125;
+return f();
+&#125;
+
+console.log(checkscope());  //输出localscope
+console.log(scope);            //输出globalscope
+
+//另一种情况：
+scope = &quot;global scope&quot;;
+function checkscope()&#123;
+    scope = &quot;local scope&quot;;
+    function f()&#123;
+        return scope;
+    &#125;
+    return f();
+&#125;
+console.log(checkscope());   //输出localscope
+console.log(scope);          //输出localscope
+//局部变量声明对全局变量进行了修改</code></pre>
+<p>如果在不加var或其他对变量声明的话，局部变量的声明可以对全局变量进行修改，覆盖。</p>
+<h2 id="五-bind函数"><a href="#五-bind函数" class="headerlink" title="五.bind函数"></a>五.bind函数</h2><pre><code>//1.将函数绑定在对象中
+function f(y)&#123;return this.x+y;&#125;
+var o = &#123;x:1&#125;;
+var g = f.bind(o);
+
+//2.绑定实际参数
+var sum = function(x,y)&#123;return x+y;&#125;
+var succ = sum.bind(null,1);
+//第一个参数null是绑定的对象，第二个则为x</code></pre>
+<h2 id="六-不完全函数"><a href="#六-不完全函数" class="headerlink" title="六.不完全函数"></a>六.不完全函数</h2><pre><code>function array(a,n)&#123;return Array.prototype.slice.call(a,n||0);&#125;
+function test(f)&#123;
+    var args = arguments;
+    for(var i in args) console.log(args[i]); //输出[Function: f]、2
+    return function()&#123;
+        var a = array(args,1);  //从索引为1开始切片，包含索引为1
+        for(var i in a) console.log(a[i]);   //输出2  
+        a = a.concat(array(arguments));
+        for(var i in a) console.log(a[i]);   //输出2、3、4
+        return f.apply(this,a);
+    &#125;
+&#125;
+
+var f = function(x,y,z)&#123;return x*(y-z);&#125;;
+test(f,2)(3,4); </code></pre>
+<p>后续括号中参数作为子函数的参数传入且可以使用arguments数组进行调用。</p>
+<h2 id="七-callee、caller函数"><a href="#七-callee、caller函数" class="headerlink" title="七.callee、caller函数"></a>七.callee、caller函数</h2><h2 id="八-高阶函数"><a href="#八-高阶函数" class="headerlink" title="八.高阶函数"></a>八.高阶函数</h2>
             </div>
 
             <!-- Post Comments -->
@@ -219,8 +302,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/about/index.html';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/about/index.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2020/09/28/9.28JS/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2020/09/28/9.28JS/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
