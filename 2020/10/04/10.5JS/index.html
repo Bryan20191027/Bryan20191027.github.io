@@ -157,8 +157,25 @@
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
                 <h1 id="10-5-JS学习笔记"><a href="#10-5-JS学习笔记" class="headerlink" title="10.5 JS学习笔记"></a>10.5 JS学习笔记</h1><h2 id="一-定义子类"><a href="#一-定义子类" class="headerlink" title="一.定义子类"></a>一.定义子类</h2><p>1.首先要确定原型继承<br><br>B.prototype = inherit(A.prototype);<br><br>B.prototype.constructor = B; 用以重载继承来的constructor属性</p>
-<p>（1）使用defineSubClass()函数实现子类<br>    function inherit(p){<br>        if(p==null)throw TypeError();<br>        if(Object.create)<br>            return Object.create(p);<br>        var t = typeof p;<br>        if(t!==”object”&amp;&amp;t!==”function”)throw TypeError();<br>        function f(){};<br>        f.prototype = p;<br>        return new f();<br>    }<br>    function extend(o,p){<br>        for(prop in p){<br>            o[prop] = p[prop];<br>        }<br>        return o;<br>    }</p>
-<pre><code>function defineSubClass(superclass,constructor,methods,statics)&#123;
+<p>（1）使用defineSubClass()函数实现子类</p>
+<pre><code>function inherit(p)&#123;
+    if(p==null)throw TypeError();
+    if(Object.create)
+        return Object.create(p);
+    var t = typeof p;
+    if(t!==&quot;object&quot;&amp;&amp;t!==&quot;function&quot;)throw TypeError();
+    function f()&#123;&#125;;
+    f.prototype = p;
+    return new f();
+&#125;
+function extend(o,p)&#123;
+    for(prop in p)&#123;
+        o[prop] = p[prop];
+    &#125;
+    return o;
+&#125;
+
+function defineSubClass(superclass,constructor,methods,statics)&#123;
     constructor.prototype = inherit(superclass.prototype);
     constructor.prototype.constructor = constructor;
     if(methods) extend(constructor.prototype,methods);
