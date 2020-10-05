@@ -96,7 +96,7 @@
 	            <a href="#s1">Index</a>
 	                    <ul class="submenu">
 	                        <li>
-	                        <a class="category-link" href="/categories/JAVA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">JAVA学习笔记</a></li><li><a class="category-link" href="/categories/%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93/">作业总结</a></li><li><a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+	                        <a class="category-link" href="/categories/JAVA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">JAVA学习笔记</a></li><li><a class="category-link" href="/categories/Python%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Python机器学习笔记</a></li><li><a class="category-link" href="/categories/%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93/">作业总结</a></li><li><a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
 	                    </ul>
 	        </li>
 	        
@@ -156,7 +156,7 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="10-4-JS学习笔记"><a href="#10-4-JS学习笔记" class="headerlink" title="10.4 JS学习笔记"></a>10.4 JS学习笔记</h1><h2 id="一-判断继承"><a href="#一-判断继承" class="headerlink" title="一.判断继承"></a>一.判断继承</h2><h3 id="（1）instanceof运算符"><a href="#（1）instanceof运算符" class="headerlink" title="（1）instanceof运算符"></a>（1）instanceof运算符</h3><p>1.instanceof 运算符进行检测类，可以用于检测间接继承<br><br>2.range.methods.isPrototypeOf(r)用以检测是否为原型对象<br><br>3.缺点：无法获得类名,且在多个框架页面不能正常工作</p>
+                <h1 id="10-4-JS学习笔记"><a href="#10-4-JS学习笔记" class="headerlink" title="10.4 JS学习笔记"></a>10.4 JS学习笔记</h1><h2 id="一-判断继承"><a href="#一-判断继承" class="headerlink" title="一.判断继承"></a>一.判断继承</h2><h3 id="（1）instanceof运算符"><a href="#（1）instanceof运算符" class="headerlink" title="（1）instanceof运算符"></a>（1）instanceof运算符</h3><p>1.instanceof 运算符进行检测类，可以用于检测间接继承<br>2.range.methods.isPrototypeOf(r)用以检测是否为原型对象<br>3.缺点：无法获得类名,且在多个框架页面不能正常工作</p>
 <h3 id="（2）constructor属性"><a href="#（2）constructor属性" class="headerlink" title="（2）constructor属性"></a>（2）constructor属性</h3><pre><code>function typeAndValue(x)&#123;
     if(x==null) return &quot;&quot;;
     switch(x.constructor)&#123;
@@ -167,7 +167,7 @@
     &#125;
 &#125;
 //如果改用typeof运算符获取到对象的class属性则case后的表达式应该改为字符串</code></pre>
-<h2 id="二-鸭式辩型"><a href="#二-鸭式辩型" class="headerlink" title="二.鸭式辩型"></a>二.鸭式辩型</h2><p>定义了一个quacks函数检查每一个对象是否实现了剩下的参数所表示的方法；<br><br>1.除第一个参数外的每个参数，如果是字符串的话则检查是否存在以他命名的方法;<br><br>2.如果是对象的话则检查第一个对象中的方法是否在这个对象中也具有同名方法；<br><br>3.如果参数是函数，则假设他是构造函数，函数将检查第一个对象实现的方法是否在构造函数的原型对象中具有同名方法。</p>
+<h2 id="二-鸭式辩型"><a href="#二-鸭式辩型" class="headerlink" title="二.鸭式辩型"></a>二.鸭式辩型</h2><p>定义了一个quacks函数检查每一个对象是否实现了剩下的参数所表示的方法；<br>1.除第一个参数外的每个参数，如果是字符串的话则检查是否存在以他命名的方法;<br>2.如果是对象的话则检查第一个对象中的方法是否在这个对象中也具有同名方法；<br>3.如果参数是函数，则假设他是构造函数，函数将检查第一个对象实现的方法是否在构造函数的原型对象中具有同名方法。</p>
 <pre><code>function quacks(o/*...*/)&#123;
     for(var i = 1;i&lt;arguments.length;i++)&#123;
         var arg = arguments[i];

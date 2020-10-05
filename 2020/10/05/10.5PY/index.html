@@ -151,60 +151,24 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/09/26/YVjnrZcptUSOmbA.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/9/26 双链表作业</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/09/28/UmSrM7uw9pWOdEG.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/10/5  Python机器学习笔记</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="双链表作业总结"><a href="#双链表作业总结" class="headerlink" title="双链表作业总结"></a>双链表作业总结</h1><h4 id="题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode-h-x-运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。"><a href="#题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode-h-x-运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。" class="headerlink" title="题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode(h,x)运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。"></a>题目：设有一个双链表h，每个结点除了有prior、data和next几个域以外，还有一个访问频度域freq，在链表被启用之前，其值均初始化为0，每当进行LocateNode(h,x)运算时，令元素值为x的结点中freq的值加1，并调整表中结点的次序，使其按访问频度的递减次序排列，以便使频繁访问的结点总是靠近表头。试写一个符合上述要求的LocateNode运算的算法。</h4><p>主要思路：<br>进行LocateNode运算时，遍历整个链表逐一寻找data相等的结点p，每找到一个即freq自增开始遍历对链表的所有结点的freq值比较，找到比p的freq值小且前一个结点比freq值大的结点（或prior为头结点）则将p插入，p原来的prior和next进行连接，然后再进行递归寻找下一个符合条件的结点。</p>
-<pre><code>LocateNode算法函数：
-bool LocateNode(DLinkNode*&amp; L, int x) &#123;
-    DLinkNode* p = L-&gt;next;
-    while (p != NULL &amp;&amp; p-&gt;data != x) &#123;
-        p = p-&gt;next;
-    &#125;
-    if (p == NULL)
-        return false;
-    else &#123;
-        DLinkNode* q = L-&gt;next;
-        p-&gt;freq++;
-        while (q != NULL &amp;&amp; q-&gt;freq &gt;= p-&gt;freq) &#123;
-            q = q-&gt;next;
-        &#125;
-        if (q-&gt;next != NULL &amp;&amp; q-&gt;freq &lt;= p-&gt;freq) &#123;
-            p-&gt;prior-&gt;next = p-&gt;next;
-            p-&gt;next-&gt;prior = p-&gt;prior;
-            p-&gt;prior = q-&gt;prior;
-            p-&gt;next = q;
-            q-&gt;prior-&gt;next = p;
-            q-&gt;prior = p;
-        &#125;
-        LocateNode(p, x);
-    &#125;
-&#125;</code></pre>
-<p>答案思路：寻找后与前一个结点进行比较，逐步将该节点向头结点移动。</p>
-<pre><code>bool LocateNode(DLinkNode *h,ElemType x)&#123;
-    DLinkNode *p = h-&gt;next,*pre;
-    while(p!=NULL&amp;&amp;p-&gt;data!=x)
-        p = p-&gt;next;
-    if(p==NULL)
-        return false;
-    else&#123;
-        p-&gt;freq++;
-        pre = p-&gt;prior;
-        while(pre!=h&amp;&amp;pre-&gt;freq&lt;p-&gt;freq)&#123;
-            p-&gt;prior = pre-&gt;prior;
-            p-&gt;prior-&gt;next = p;
-            pre-&gt;next = p-&gt;next;
-            if(pre-&gt;next!=NULL)
-                pre-&gt;next-&gt;prior = pre;
-            p-&gt;next = pre;
-            pre-&gt;prior = p;
-            pre=p-&gt;prior;
-        &#125;
-        return true;
-    &#125;
-&#125;</code></pre>
+                <h1 id="机器学习100天——Day1-数据预处理"><a href="#机器学习100天——Day1-数据预处理" class="headerlink" title="机器学习100天——Day1 数据预处理"></a>机器学习100天——Day1 数据预处理</h1><h2 id="转载自Github原教程网址"><a href="#转载自Github原教程网址" class="headerlink" title="转载自Github原教程网址"></a>转载自<a target="_blank" rel="noopener" href="https://github.com/MLEveryday/100-Days-Of-ML-Code/blob/master/Code/Day%201_Data_Preprocessing.md">Github原教程网址</a></h2><h3 id="第一步：导入相关库"><a href="#第一步：导入相关库" class="headerlink" title="第一步：导入相关库"></a>第一步：导入相关库</h3><pre><code>import numpy as np
+import pandas as pd </code></pre>
+<h3 id="第二步：导入数据集"><a href="#第二步：导入数据集" class="headerlink" title="第二步：导入数据集"></a>第二步：导入数据集</h3><pre><code>dataset = pd.read_csv(&#39;Data.csv&#39;)    #读取csv文件
+X = dataset.iloc[ : , :-1].values    #.iloc[行，列]，共有四列，取到了索引值为0~2的前三列
+Y = dataset.iloc[ : , 3].values    #只取了索引值为3的第四列</code></pre>
+<h3 id="第三步：处理丢失数据"><a href="#第三步：处理丢失数据" class="headerlink" title="第三步：处理丢失数据"></a>第三步：处理丢失数据</h3><pre><code>from sklearn.impute import SimpleImputer
+#注意点1：原文中为from sklearn.preprocessing import Imputer，但是版本更新后不可使用
+imputer = SimpleImputer(missing_values = np.nan,strategy = &quot;mean&quot;)    
+#注意点2：原文中参数列表中还有一个参数为axis = 0，但已被弃用
+#注意点3：原文中missing_values后输入值为&quot;NaN&quot;
+imputer = imputer.fit(X[ : , 1:3])
+X[ : , 1:3] = imputer.transform(X[ : , 1:3])</code></pre>
+<p>SimpleImputer的missing_values为缺失值。<br>strategy就是你采取什么样的策略去填充空值，总共有4种选择。分别是mean,median, most_frequent,以及constant。对于每一列来说的，如果是mean，则该列则由该列的均值填充。而median,则是中位数，most_frequent则是众数。<br>需要注意的是，如果是constant,则可以将空值填充为自定义的值，这就要涉及到后面一个参数了，也就是fill_value。如果strategy=’constant’,则填充fill_value的值。</p>
 
             </div>
 
@@ -267,8 +231,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2020/09/26/first/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2020/09/26/first/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2020/10/05/10.5PY/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2020/10/05/10.5PY/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

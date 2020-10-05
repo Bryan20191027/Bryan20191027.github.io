@@ -96,7 +96,7 @@
 	            <a href="#s1">Index</a>
 	                    <ul class="submenu">
 	                        <li>
-	                        <a class="category-link" href="/categories/JAVA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">JAVA学习笔记</a></li><li><a class="category-link" href="/categories/%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93/">作业总结</a></li><li><a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+	                        <a class="category-link" href="/categories/JAVA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">JAVA学习笔记</a></li><li><a class="category-link" href="/categories/Python%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Python机器学习笔记</a></li><li><a class="category-link" href="/categories/%E4%BD%9C%E4%B8%9A%E6%80%BB%E7%BB%93/">作业总结</a></li><li><a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
 	                    </ul>
 	        </li>
 	        
@@ -156,18 +156,18 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一-数据类型转换"><a href="#一-数据类型转换" class="headerlink" title="一.数据类型转换"></a>一.数据类型转换</h2><h3 id="（1）隐式数据类型转换"><a href="#（1）隐式数据类型转换" class="headerlink" title="（1）隐式数据类型转换"></a>（1）隐式数据类型转换</h3><p>特点：<br>    <br>1.自动完成<br>    <br>2.数据范围由小到大进行转换</p>
+                <h2 id="一-数据类型转换"><a href="#一-数据类型转换" class="headerlink" title="一.数据类型转换"></a>一.数据类型转换</h2><h3 id="（1）隐式数据类型转换"><a href="#（1）隐式数据类型转换" class="headerlink" title="（1）隐式数据类型转换"></a>（1）隐式数据类型转换</h3><p>特点：<br>1.自动完成<br>2.数据范围由小到大进行转换</p>
 <pre><code>long num1 = 100;    
 //左边为long数据类型，右边为int数据类型，范围从小变为大，符合从小到大的规则
 double num2 = 2.5F;    //float-&gt;double
 float num3 = 30L;    //long-&gt;float</code></pre>
-<h3 id="2-显式数据类型转换"><a href="#2-显式数据类型转换" class="headerlink" title="(2)显式数据类型转换"></a>(2)显式数据类型转换</h3><p>特点：<br><br>1.可以非由小到大<br><br>2.可能会产生精度损失，数据溢出等问题<br><br>3.格式：范围小的类型 变量名 = （范围小的类型） 原范围大数据</p>
+<h3 id="2-显式数据类型转换"><a href="#2-显式数据类型转换" class="headerlink" title="(2)显式数据类型转换"></a>(2)显式数据类型转换</h3><p>特点：<br>1.可以非由小到大<br>2.可能会产生精度损失，数据溢出等问题<br>3.格式：范围小的类型 变量名 = （范围小的类型） 原范围大数据</p>
 <pre><code>int num2 = (int)3.99F; //num2只会存储3而不是4，因为这并非是四舍五入，产生了数据精度损失</code></pre>
-<h3 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="(3)注意事项"></a>(3)注意事项</h3><p>1.byte/short/char这三种类型均可发生数学运算，如“+”；<br><br>2.byte/short/char这三种类型在运算的时候均会被提升为int类型，然后再计算</p>
+<h3 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="(3)注意事项"></a>(3)注意事项</h3><p>1.byte/short/char这三种类型均可发生数学运算，如“+”；<br>2.byte/short/char这三种类型在运算的时候均会被提升为int类型，然后再计算</p>
 <pre><code>char zifu1 = &#39;A&#39;;
 System.out.println(zifu1+1); //输出66
 //大写字母A在计算机中是由一个数字“65”所存储，一旦进行数学运算，那么字符会先转换为一个数字再进行加法运算</code></pre>
-<h2 id="二-编译器的优化"><a href="#二-编译器的优化" class="headerlink" title="二.编译器的优化"></a>二.编译器的优化</h2><p>对于byte/short/char三种类型来说，如果右侧赋值的数值没有超过范围，那么java编译器就会自动隐含地加上(byte)(short)(char)，即一中所说的数据转换。<br><br>1.如果没有超过左侧范围，则编译器补上强制。<br><br>2.如果右侧超过左侧范围，则编译器直接报错。<br><br>3.在给变量进行赋值的时候，若右侧表达式当中全是常量，没有任何变量，那么编译器将会直接将若干个常量表达式计算得到结果。</p>
+<h2 id="二-编译器的优化"><a href="#二-编译器的优化" class="headerlink" title="二.编译器的优化"></a>二.编译器的优化</h2><p>对于byte/short/char三种类型来说，如果右侧赋值的数值没有超过范围，那么java编译器就会自动隐含地加上(byte)(short)(char)，即一中所说的数据转换。<br>1.如果没有超过左侧范围，则编译器补上强制。<br>2.如果右侧超过左侧范围，则编译器直接报错。<br>3.在给变量进行赋值的时候，若右侧表达式当中全是常量，没有任何变量，那么编译器将会直接将若干个常量表达式计算得到结果。</p>
 <pre><code>byte num1 = /*(byte)*/ 30; //右侧没有超过左侧地范围
 char zifu = /*(char)*/ 65; 
 short num1 = 10; //未超出范围
@@ -178,28 +178,28 @@ short b = 8;
 short result = 5 + 8；
 //编译之后，得到的.class字节码文件当中相当于直接就是short result = 13；
 //short result = 5 + 8 + a; 会报错</code></pre>
-<h2 id="三-方法调用"><a href="#三-方法调用" class="headerlink" title="三.方法调用"></a>三.方法调用</h2><p>1.单独调用,方法名称（参数）；<br><br>2.打印调用，System.out.println(方法名称（参数））;<br><br>3.赋值调用</p>
+<h2 id="三-方法调用"><a href="#三-方法调用" class="headerlink" title="三.方法调用"></a>三.方法调用</h2><p>1.单独调用,方法名称（参数）；<br>2.打印调用，System.out.println(方法名称（参数））;<br>3.赋值调用</p>
 <pre><code>//单独调用
 sum(10,20);
 //打印调用
 System.out.println(sum(10,20));
 //赋值调用
 int number = sum(10,20);</code></pre>
-<h2 id="四-方法注意事项"><a href="#四-方法注意事项" class="headerlink" title="四.方法注意事项"></a>四.方法注意事项</h2><h3 id="（1）方法定义的注意事项"><a href="#（1）方法定义的注意事项" class="headerlink" title="（1）方法定义的注意事项"></a>（1）方法定义的注意事项</h3><p>1.方法应当定义在类当中，但是不能在方法中定义方法，不能嵌套；<br><br>2.方法定义的前后顺序无所谓；<br><br>3.方法定义之后不会执行，如果要执行，一定要进行调用；<br><br>4.return后面的返回值类型必须和方法的返回值类型对应起来；<br><br>5.一个方法中可以有多条return语句，但必须保证同时只有一个能执行到；</p>
+<h2 id="四-方法注意事项"><a href="#四-方法注意事项" class="headerlink" title="四.方法注意事项"></a>四.方法注意事项</h2><h3 id="（1）方法定义的注意事项"><a href="#（1）方法定义的注意事项" class="headerlink" title="（1）方法定义的注意事项"></a>（1）方法定义的注意事项</h3><p>1.方法应当定义在类当中，但是不能在方法中定义方法，不能嵌套；<br>2.方法定义的前后顺序无所谓；<br>3.方法定义之后不会执行，如果要执行，一定要进行调用；<br>4.return后面的返回值类型必须和方法的返回值类型对应起来；<br>5.一个方法中可以有多条return语句，但必须保证同时只有一个能执行到；</p>
 <pre><code>public static void test()&#123;
     return; //可以写return，不返回值，只是象征着方法的结束，可省略不写
 &#125;</code></pre>
-<h3 id="2-方法重载注意事项"><a href="#2-方法重载注意事项" class="headerlink" title="(2)方法重载注意事项"></a>(2)方法重载注意事项</h3><p>1.需要参数个数或者类型不同<br><br>2.需要参数多类型顺序不同<br><br>3.重载与参数名称无关，与方法的返回值类型无关，与有无public、static等修饰符无关<br><br>（快捷键shift+F6可快捷批量修改变量名称)</p>
-<h2 id="五-数组"><a href="#五-数组" class="headerlink" title="五.数组"></a>五.数组</h2><h3 id="（1）数组的特点"><a href="#（1）数组的特点" class="headerlink" title="（1）数组的特点"></a>（1）数组的特点</h3><p>1.数组是一种引用数据类型<br><br>2.数组当中的多个数据，类型必须统一<br><br>3.数组的长度在程序运行期间不可改变，通过length可获取长度</p>
-<h3 id="（2）数组的初始化"><a href="#（2）数组的初始化" class="headerlink" title="（2）数组的初始化"></a>（2）数组的初始化</h3><p>1.动态初始化（指定长度）<br><br>格式:数据类型[] 数组名称 = new 数据类型[数组长度]；<br><br>左侧中括号代表数组；</p>
+<h3 id="2-方法重载注意事项"><a href="#2-方法重载注意事项" class="headerlink" title="(2)方法重载注意事项"></a>(2)方法重载注意事项</h3><p>1.需要参数个数或者类型不同<br>2.需要参数多类型顺序不同<br>3.重载与参数名称无关，与方法的返回值类型无关，与有无public、static等修饰符无关<br>（快捷键shift+F6可快捷批量修改变量名称)</p>
+<h2 id="五-数组"><a href="#五-数组" class="headerlink" title="五.数组"></a>五.数组</h2><h3 id="（1）数组的特点"><a href="#（1）数组的特点" class="headerlink" title="（1）数组的特点"></a>（1）数组的特点</h3><p>1.数组是一种引用数据类型<br>2.数组当中的多个数据，类型必须统一<br>3.数组的长度在程序运行期间不可改变，通过length可获取长度  </p>
+<h3 id="（2）数组的初始化"><a href="#（2）数组的初始化" class="headerlink" title="（2）数组的初始化"></a>（2）数组的初始化</h3><p>1.动态初始化（指定长度）<br>格式:数据类型[] 数组名称 = new 数据类型[数组长度]；<br>左侧中括号代表数组；</p>
 <pre><code>int[] arrayA = new int[300];
 double[] arrayB = new double[300];</code></pre>
-<p>2.静态初始化（指定内容）<br><br>标准格式：数据类型[] 数组名称 = new 数据类型[]{数据1，数据2，数据3,…}；</p>
+<p>2.静态初始化（指定内容）<br>标准格式：数据类型[] 数组名称 = new 数据类型[]{数据1，数据2，数据3,…}；</p>
 <pre><code>int[] arrayA = new int[]&#123;5,15,25&#125;;
 String arrayB = new String[]&#123;&quot;Hello&quot;,&quot;World&quot;,&quot;JAVA&quot;&#125;;</code></pre>
 <p>省略格式：数据类型[] 数组名称 = {数据1，数据2，数据3,…}；</p>
 <pre><code>int[] arrayA = &#123;5,15,25&#125;;</code></pre>
-<p>注意事项：<br><br>1.虽然静态初始化没有直接告诉长度，但是根据大括号里面的元素具体内容可以自动推算出长度。<br><br>2.静态初始化标准格式可以拆分成两个步骤；</p>
+<p>注意事项：<br>1.虽然静态初始化没有直接告诉长度，但是根据大括号里面的元素具体内容可以自动推算出长度。<br>2.静态初始化标准格式可以拆分成两个步骤；</p>
 <pre><code>int[] arrayB;
 arrayB = new int[]&#123;5,15,25&#125;;</code></pre>
 <p>3.动态初始化也可以拆分成两个步骤；</p>
@@ -210,14 +210,14 @@ arrayA = new int[300];</code></pre>
 <pre><code>int[] arrayA = new int[]&#123;1,2,3,4,5&#125;;
 System.out.println(arrayA); //[I@1b6d3586
 //中括号[代表为数组类型，I代表为数据类型为int，1b6d3586为16进制的内存地址值</code></pre>
-<p>2.访问数组元素格式，数据名称[索引值]。<br><br>3.使用动态初始化数组的时候，其中的元素将会自动拥有一个默认值.若为整数类型，为0；浮点类型为0.0；字符类型为’\u0000’(u为unicode).<br><br>4.静态初始化其实也有默认值的过程，只不过系统马上自动将默认值替换成了大括号当中的具体数值。</p>
-<h3 id="（4）数组作为方法参数、返回值"><a href="#（4）数组作为方法参数、返回值" class="headerlink" title="（4）数组作为方法参数、返回值"></a>（4）数组作为方法参数、返回值</h3><p>1.作为参数时，参数为(int[] array)，传递的是数组的内存地址值；<br><br>2.作为返回值时，方法的返回数据类型为int[]，返回的也是地址值。</p>
+<p>2.访问数组元素格式，数据名称[索引值]。<br>3.使用动态初始化数组的时候，其中的元素将会自动拥有一个默认值.若为整数类型，为0；浮点类型为0.0；字符类型为’\u0000’(u为unicode).<br>4.静态初始化其实也有默认值的过程，只不过系统马上自动将默认值替换成了大括号当中的具体数值。</p>
+<h3 id="（4）数组作为方法参数、返回值"><a href="#（4）数组作为方法参数、返回值" class="headerlink" title="（4）数组作为方法参数、返回值"></a>（4）数组作为方法参数、返回值</h3><p>1.作为参数时，参数为(int[] array)，传递的是数组的内存地址值；<br>2.作为返回值时，方法的返回数据类型为int[]，返回的也是地址值。</p>
 <h2 id="六-内存"><a href="#六-内存" class="headerlink" title="六.内存"></a>六.内存</h2><h3 id="（1）Java内存"><a href="#（1）Java内存" class="headerlink" title="（1）Java内存"></a>（1）Java内存</h3><p><img src="https://i.loli.net/2020/10/04/mdUp8sFrBvNo6AT.png"><br><br></p>
-<h3 id="（2）数组内存使用"><a href="#（2）数组内存使用" class="headerlink" title="（2）数组内存使用"></a>（2）数组内存使用</h3><p><img src="https://i.loli.net/2020/10/04/g5tqvC1zYcskWZQ.png"><br>1.先在方法区放入main方法的头；<br><br>2.从方法区将main方法的信息加载到栈内存中，并且在栈中为main方法开辟内存空间（进栈）。<br><br>3.在栈中将数组名称放入main方法的内存空间中。<br><br>4.在堆中为该数组开辟内存空间，将16进制地址放回数组在栈中的内存存储。<br><br>5.输出地址值，根据地址值以及索引值改变数组在堆中的数据值。<br><br>（多个数组的内存划分是类似的）</p>
+<h3 id="（2）数组内存使用"><a href="#（2）数组内存使用" class="headerlink" title="（2）数组内存使用"></a>（2）数组内存使用</h3><p><img src="https://i.loli.net/2020/10/04/g5tqvC1zYcskWZQ.png"><br>1.先在方法区放入main方法的头；<br>2.从方法区将main方法的信息加载到栈内存中，并且在栈中为main方法开辟内存空间（进栈）。<br>3.在栈中将数组名称放入main方法的内存空间中。<br>4.在堆中为该数组开辟内存空间，将16进制地址放回数组在栈中的内存存储。<br>5.输出地址值，根据地址值以及索引值改变数组在堆中的数据值。<br>（多个数组的内存划分是类似的）  </p>
 <h3 id="（3）多个引用指向同一个数组"><a href="#（3）多个引用指向同一个数组" class="headerlink" title="（3）多个引用指向同一个数组"></a>（3）多个引用指向同一个数组</h3><pre><code>int[] arrayA = new int[5];
 int[] arrayB = arrayA;
 //将arrayA数组的地址值赋值给arrayB数组，可通过arrayA和arrayB对该数组进行修改。</code></pre>
-<h3 id="（4）常见问题："><a href="#（4）常见问题：" class="headerlink" title="（4）常见问题："></a>（4）常见问题：</h3><p>1.索引值超出范围；<br><br>2.空指针异常；</p>
+<h3 id="（4）常见问题："><a href="#（4）常见问题：" class="headerlink" title="（4）常见问题："></a>（4）常见问题：</h3><p>1.索引值超出范围；<br>2.空指针异常；</p>
 <pre><code>int[] arrayA = null;
 //所有的引用类型变量，都可以赋值为一个null值，但是代表其中什么都没有
 //数组必须进行new初始化才能使用其中的元素，否则无默认值。
