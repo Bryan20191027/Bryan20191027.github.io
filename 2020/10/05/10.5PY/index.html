@@ -151,7 +151,7 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/09/28/UmSrM7uw9pWOdEG.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/10/06/ECnkf6ZdAl4i5Iy.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
                 <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/10/5  Python机器学习笔记</h2></a>
             </div>
             <!-- Post -->
@@ -168,8 +168,36 @@ imputer = SimpleImputer(missing_values = np.nan,strategy = &quot;mean&quot;)
 #注意点3：原文中missing_values后输入值为&quot;NaN&quot;
 imputer = imputer.fit(X[ : , 1:3])
 X[ : , 1:3] = imputer.transform(X[ : , 1:3])</code></pre>
-<p>SimpleImputer的missing_values为缺失值。<br>strategy就是你采取什么样的策略去填充空值，总共有4种选择。分别是mean,median, most_frequent,以及constant。对于每一列来说的，如果是mean，则该列则由该列的均值填充。而median,则是中位数，most_frequent则是众数。<br>需要注意的是，如果是constant,则可以将空值填充为自定义的值，这就要涉及到后面一个参数了，也就是fill_value。如果strategy=’constant’,则填充fill_value的值。</p>
-
+<h4 id="1-SimleImputer参数："><a href="#1-SimleImputer参数：" class="headerlink" title="1.SimleImputer参数："></a>1.SimleImputer参数：</h4><p>(1)missing_values为缺失值。<br>(2)strategy就是你采取什么样的策略去填充空值，总共有4种选择。分别是mean,median, most_frequent,以及constant。对于每一列来说的，如果是mean，则该列则由该列的均值填充。而median,则是中位数，most_frequent则是众数。<br>需要注意的是，如果是constant,则可以将空值填充为自定义的值，这就要涉及到后面一个参数了，也就是fill_value。如果strategy=’constant’,则填充fill_value的值。</p>
+<h4 id="2-SinmleImputer方法"><a href="#2-SinmleImputer方法" class="headerlink" title="2.SinmleImputer方法:"></a>2.SinmleImputer方法:</h4><p>fit方法：可以计算矩阵缺失的相关值的大小，以便填充其他缺失数据矩阵时进行使用。<br>transform方法:将对应数值填入缺失值的位置，如上文中将mean的缺失值放入到X的索引值为1和2的两列中。</p>
+<h3 id="第四步：解析分类数据"><a href="#第四步：解析分类数据" class="headerlink" title="第四步：解析分类数据"></a>第四步：解析分类数据</h3><pre><code>from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder_X = LabelEncoder()
+X[ : , 0] = labelencoder_X.fit_transform(X[ : , 0])
+#原版写法为onehotencoder = OneHotEncoder(categorical_features = [0])
+ct2 = ColumnTransformer([(&quot;country&quot;, OneHotEncoder(), [1])], remainder = &#39;drop&#39;)
+X = ct2.fit_transform(X).toarray()
+labelencoder_Y = LabelEncoder()
+Y =  labelencoder_Y.fit_transform(Y)</code></pre>
+<h4 id="1-LabelEncoder"><a href="#1-LabelEncoder" class="headerlink" title="1.LabelEncoder()"></a>1.LabelEncoder()</h4><p>标准化标签，将标签值统一转换成range(标签值个数-1)范围内</p>
+<pre><code>le = LabelEncoder()
+le.fit([1,5,67,100])
+le.transform([1,1,100,67,5])
+#输出：array([0,0,3,2,1])
+#即输出transform中各个数字在fit中的列表索引值对应为一个数组</code></pre>
+<h4 id="2-fit-transform-有待补充修改）"><a href="#2-fit-transform-有待补充修改）" class="headerlink" title="2.fit_transform(有待补充修改）"></a>2.fit_transform(有待补充修改）</h4><h4 id="3-独热编码OneHotEncoder"><a href="#3-独热编码OneHotEncoder" class="headerlink" title="3.独热编码OneHotEncoder"></a>3.独热编码OneHotEncoder</h4><p>独热编码即 One-Hot 编码，又称一位有效编码，其方法是使用N位状态寄存器来对N个状态进行编码，每个状态都有它独立的寄存器位，并且在任意时候，其中只有一位有效。<br>例如对六个状态进行编码：<br>自然顺序码为 000,001,010,011,100,101<br>独热编码则是 000001,000010,000100,001000,010000,100000<br>此处输出图为：<br><img src="https://i.loli.net/2020/10/05/daUqkRPuV7yGY6K.png"></p>
+<h3 id="第五步：拆分数据集为训练集合和测试集合"><a href="#第五步：拆分数据集为训练集合和测试集合" class="headerlink" title="第五步：拆分数据集为训练集合和测试集合"></a>第五步：拆分数据集为训练集合和测试集合</h3><pre><code>from sklearn.model_selection import train_test_split
+#from sklearn.cross_validation import train_test_split（更新前代码，现已不可用）
+X_train, X_test, Y_train, Y_test = train_test_split( X , Y , test_size = 0.2,
+random_state = 0)</code></pre>
+<h4 id="1-train-test-split-方法"><a href="#1-train-test-split-方法" class="headerlink" title="1.train_test_split()方法"></a>1.train_test_split()方法</h4><p>参考自<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Yanjy-OnlyOne/p/11288098.html">博客</a><br>#####X_train,X_test, y_train, y_test =sklearn.model_selection.train_test_split(train_data,train_target,test_size=0.4, random_state=0,stratify=y_train)<br>train_data：所要划分的样本特征集<br>train_target：所要划分的样本结果<br>test_size：样本占比，如果是整数的话就是样本的数量<br>random_state：是随机数的种子。<br>随机数种子：其实就是该组随机数的编号，在需要重复试验的时候，保证得到一组一样的随机数。<br>比如你每次都填1，其他参数一样的情况下你得到的随机数组是一样的。但填0或不填，每次都会不一样。</p>
+<p>stratify是为了保持split前类的分布。<br>比如有100个数据，80个属于A类，20个属于B类。<br>如果train_test_split(… test_size=0.25, stratify = y_all), 那么split之后数据如下：<br>training: 75个数据，其中60个属于A类，15个属于B类。<br>testing: 25个数据，其中20个属于A类，5个属于B类。 </p>
+<p>用了stratify参数，training集和testing集的类的比例是 A：B= 4：1，等同于split前的比例（80：20)。<br>通常在这种类分布不平衡的情况下会用到stratify。</p>
+<p>将stratify=X就是按照X中的比例分配,将stratify=y就是按照y中的比例分配</p>
+<h3 id="第六步：特征量化"><a href="#第六步：特征量化" class="headerlink" title="第六步：特征量化"></a>第六步：特征量化</h3><pre><code>from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)</code></pre>
+<h4 id="StandardScaler-—-计算训练集的平均值和标准差，以便测试数据集使用相同的变换"><a href="#StandardScaler-—-计算训练集的平均值和标准差，以便测试数据集使用相同的变换" class="headerlink" title="StandardScaler()—-计算训练集的平均值和标准差，以便测试数据集使用相同的变换"></a>StandardScaler()—-计算训练集的平均值和标准差，以便测试数据集使用相同的变换</h4>
             </div>
 
             <!-- Post Comments -->
