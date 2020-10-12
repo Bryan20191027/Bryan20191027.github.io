@@ -151,96 +151,53 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/09/28/UmSrM7uw9pWOdEG.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/9/28  JS学习笔记</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/10/04/eFtPxDQASR3akcU.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/10/8  算法学习笔记</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="9-28-JS学习笔记"><a href="#9-28-JS学习笔记" class="headerlink" title="9.28 JS学习笔记"></a>9.28 JS学习笔记</h1><h2 id="一、this的作用域判别"><a href="#一、this的作用域判别" class="headerlink" title="一、this的作用域判别"></a>一、this的作用域判别</h2><pre><code>var o = &#123;
-    m:function () &#123;
-    var self = this;
-    console.log(this === o);  //输出为true
-    f();
-    function f() &#123;
-        console.log(this === o);//该处this的值为全局对象或undefined，输出false
-        console.log(this.a);
-        console.log(self === o); //输出为true
-        &#125;
-    &#125;,
-    a:1
-&#125;;
-o.m(); </code></pre>
-<p>this在改对象的属性嵌套函数中，子函数的this所指与父函数的this不同，为全局对象或undefined,而父函数则为该对象。</p>
-<h2 id="二-参数列表的使用"><a href="#二-参数列表的使用" class="headerlink" title="二.参数列表的使用"></a>二.参数列表的使用</h2><pre><code>function max(/*...*/)&#123;
-    var max = Number.NEGATIVE_INFINITY;
-    for(var i = 0;i&lt;arguments.length;i++)&#123;
-        if(max &lt; arguments[i]) max = arguments[i];
-       &#125;
-    return max;
-&#125;
-
-var a = max(1,3,5,7,9,555,10002,654);
-console.log(a);   //操作参数列表，使用任意数目参数</code></pre>
-<p>参数列表作为一个数组，可以使得函数可以接受超出给出参数数量的参数进行运算。</p>
-<h2 id="三-函数的属性"><a href="#三-函数的属性" class="headerlink" title="三.函数的属性"></a>三.函数的属性</h2><pre><code>uniqueInteger.counter = 0;
-function uniqueInteger()&#123;
-    return uniqueInteger.counter++;
-&#125;
-
-console.log(uniqueInteger()); //输出0
-console.log(uniqueInteger()); //输出1</code></pre>
-<p>函数可以设定一个值作为属性（？），且属性值并不会不变，可以进行存储、保留</p>
-<h2 id="四-函数作用域声明"><a href="#四-函数作用域声明" class="headerlink" title="四.函数作用域声明"></a>四.函数作用域声明</h2><pre><code>var scope = &quot;global scope&quot;;
-function checkscope()&#123;
-    var scope = &quot;local scope&quot;;
-    function f()&#123;
-        return scope;
-       &#125;
-return f();
-&#125;
-
-console.log(checkscope());  //输出localscope
-console.log(scope);            //输出globalscope
-
-//另一种情况：
-scope = &quot;global scope&quot;;
-function checkscope()&#123;
-    scope = &quot;local scope&quot;;
-    function f()&#123;
-        return scope;
+                <h1 id="10-8-算法学习笔记"><a href="#10-8-算法学习笔记" class="headerlink" title="10.8 算法学习笔记"></a>10.8 算法学习笔记</h1><h2 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h2><p>(1)基础输入输出语句</p>
+<pre><code>scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+printf(&quot;%.1f\n,a+b);
+//.1f代表着浮点数保留一位小数输出
+//04d表示小数点前至少保留4位有效数字，如果不够位则用0补
+//4d则不会使用0补</code></pre>
+<p>(2)短路策略：<br>a为真，b无论是如何,a||b均为真，不会进行b中的运算</p>
+<p>(3)转义：<br>\\n，编译器会把双斜线\\理解为\</p>
+<p>(4)floor(x)函数返回不超过x的最大整数</p>
+<p>(5)管道小技巧：在windows命令行下执行echo 20|abc，操作系统会自动把20输入，其中abc是程序名。</p>
+<p>(6)使用scanf(“%d”,&amp;x) == 1进行判断，返回的是成功输入的变量个数，当输入结束时scanf函数无法读取x，返回0.按Enter不意味着输入的结束，在windows下，输入完毕后先按Enter键，再按Ctrl+Z键，最后再按Enter键，即可结束输入。</p>
+<p>(7)变量在未赋值之前值不确定，特别地他不一定等于0. </p>
+<pre><code>#define INF = 100000000
+max = -INF；
+min = INF;</code></pre>
+<p>(8)输入输出重定向：</p>
+<pre><code>freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+freopen(&quot;output.txt&quot;,&quot;w&quot;,stdout);
+//将使得scanf从文件input.txt读入，printf写入文件output.txt。所用读键盘输入、写屏幕输入的函数都将改用文件</code></pre>
+<p>(9)要求用文件输入输出（非重定向方式）</p>
+<pre><code>#include&lt;stdio.h&gt;
+#define INF 1000000000
+int main()
+&#123;
+    FILE *fin,*fout;
+    fin = fopen(&quot;data.in&quot;,&quot;rb&quot;);
+    fout = fopen(&quot;data.out&quot;,&quot;wb&quot;);
+    int x,n = 0,min = INF,max = -INF,s = 0;
+    while(fscanf(fin,&quot;%d&quot;,&amp;x)==1)
+    &#123;
+        s+=x;
+        if(x&lt;min)min = x;
+        if(x&gt;max)max = x;
+        n++;
     &#125;
-    return f();
-&#125;
-console.log(checkscope());   //输出localscope
-console.log(scope);          //输出localscope
-//局部变量声明对全局变量进行了修改</code></pre>
-<p>如果在不加var或其他对变量声明的话，局部变量的声明可以对全局变量进行修改，覆盖。</p>
-<h2 id="五-bind函数"><a href="#五-bind函数" class="headerlink" title="五.bind函数"></a>五.bind函数</h2><pre><code>//1.将函数绑定在对象中
-function f(y)&#123;return this.x+y;&#125;
-var o = &#123;x:1&#125;;
-var g = f.bind(o);
+    fprintf(fout,&quot;%d %d %.3f\n&quot;,min,max,(double)s/n);
+    fclose(fin);
+    fclose(fout);
+    return 0;
+&#125;</code></pre>
+<h2 id="2-竞赛注意事项"><a href="#2-竞赛注意事项" class="headerlink" title="2.竞赛注意事项"></a>2.竞赛注意事项</h2><p>(1)输入输出格式规定：<br>不要在用户输入之前打印提示信息（例如”Please input:”）<br>(2)不要让程序按任意键退出（例如调用system(“pause”)，或者调用多余getchar()），输出完毕后立即终止程序，不需要等待用户按键。<br>(3)不要在算法竞赛中使用getch()、getcher()、gotoxy()、clrscr()函数<br>(4)KISS(Keep It Simple and Stupid)原则<br>(5)竞赛一般使用的是int都是32位整数</p>
 
-//2.绑定实际参数
-var sum = function(x,y)&#123;return x+y;&#125;
-var succ = sum.bind(null,1);
-//第一个参数null是绑定的对象，第二个则为x</code></pre>
-<h2 id="六-不完全函数"><a href="#六-不完全函数" class="headerlink" title="六.不完全函数"></a>六.不完全函数</h2><pre><code>function array(a,n)&#123;return Array.prototype.slice.call(a,n||0);&#125;
-function test(f)&#123;
-    var args = arguments;
-    for(var i in args) console.log(args[i]); //输出[Function: f]、2
-    return function()&#123;
-        var a = array(args,1);  //从索引为1开始切片，包含索引为1
-        for(var i in a) console.log(a[i]);   //输出2  
-        a = a.concat(array(arguments));
-        for(var i in a) console.log(a[i]);   //输出2、3、4
-        return f.apply(this,a);
-    &#125;
-&#125;
-
-var f = function(x,y,z)&#123;return x*(y-z);&#125;;
-test(f,2)(3,4); </code></pre>
-<p>后续括号中参数作为子函数的参数传入且可以使用arguments数组进行调用。</p>
-<h2 id="七-callee、caller函数"><a href="#七-callee、caller函数" class="headerlink" title="七.callee、caller函数"></a>七.callee、caller函数</h2><h2 id="八-高阶函数"><a href="#八-高阶函数" class="headerlink" title="八.高阶函数"></a>八.高阶函数</h2>
             </div>
 
             <!-- Post Comments -->
@@ -302,8 +259,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2020/09/28/9.28JS/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2020/09/28/9.28JS/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2020/10/08/10.8%E7%AE%97%E6%B3%95/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2020/10/08/10.8%E7%AE%97%E6%B3%95/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
