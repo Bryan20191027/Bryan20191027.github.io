@@ -174,8 +174,9 @@ X[ : , 1:3] = imputer.transform(X[ : , 1:3])</code></pre>
 labelencoder_X = LabelEncoder()
 X[ : , 0] = labelencoder_X.fit_transform(X[ : , 0])
 #原版写法为onehotencoder = OneHotEncoder(categorical_features = [0])
-ct2 = ColumnTransformer([(&quot;country&quot;, OneHotEncoder(), [1])], remainder = &#39;drop&#39;)
-X = ct2.fit_transform(X).toarray()
+ct2 = ColumnTransformer([(&quot;country&quot;, OneHotEncoder(), [0])], remainder = &#39;passthrough&#39;)
+X = ct2.fit_transform(X)
+#不能使用toarray()
 labelencoder_Y = LabelEncoder()
 Y =  labelencoder_Y.fit_transform(Y)</code></pre>
 <h4 id="1-LabelEncoder"><a href="#1-LabelEncoder" class="headerlink" title="1.LabelEncoder()"></a>1.LabelEncoder()</h4><p>标准化标签，将标签值统一转换成range(标签值个数-1)范围内</p>
@@ -184,7 +185,7 @@ le.fit([1,5,67,100])
 le.transform([1,1,100,67,5])
 #输出：array([0,0,3,2,1])
 #即输出transform中各个数字在fit中的列表索引值对应为一个数组</code></pre>
-<h4 id="2-fit-transform-有待补充修改）"><a href="#2-fit-transform-有待补充修改）" class="headerlink" title="2.fit_transform(有待补充修改）"></a>2.fit_transform(有待补充修改）</h4><h4 id="3-独热编码OneHotEncoder"><a href="#3-独热编码OneHotEncoder" class="headerlink" title="3.独热编码OneHotEncoder"></a>3.独热编码OneHotEncoder</h4><p>独热编码即 One-Hot 编码，又称一位有效编码，其方法是使用N位状态寄存器来对N个状态进行编码，每个状态都有它独立的寄存器位，并且在任意时候，其中只有一位有效。<br>例如对六个状态进行编码：<br>自然顺序码为 000,001,010,011,100,101<br>独热编码则是 000001,000010,000100,001000,010000,100000<br>此处输出图为：<br><img src="https://i.loli.net/2020/10/05/daUqkRPuV7yGY6K.png"></p>
+<h4 id="2-fit-transform-有待补充修改）"><a href="#2-fit-transform-有待补充修改）" class="headerlink" title="2.fit_transform(有待补充修改）"></a>2.fit_transform(有待补充修改）</h4><h4 id="3-独热编码OneHotEncoder"><a href="#3-独热编码OneHotEncoder" class="headerlink" title="3.独热编码OneHotEncoder"></a>3.独热编码OneHotEncoder</h4><p>独热编码即 One-Hot 编码，又称一位有效编码，其方法是使用N位状态寄存器来对N个状态进行编码，每个状态都有它独立的寄存器位，并且在任意时候，其中只有一位有效。<br>例如对六个状态进行编码：<br>自然顺序码为 000,001,010,011,100,101<br>独热编码则是 000001,000010,000100,001000,010000,100000<br>此处输出图为：<br><img src="https://i.loli.net/2020/10/19/9bNujVxcpItnKae.png"></p>
 <h3 id="第五步：拆分数据集为训练集合和测试集合"><a href="#第五步：拆分数据集为训练集合和测试集合" class="headerlink" title="第五步：拆分数据集为训练集合和测试集合"></a>第五步：拆分数据集为训练集合和测试集合</h3><pre><code>from sklearn.model_selection import train_test_split
 #from sklearn.cross_validation import train_test_split（更新前代码，现已不可用）
 X_train, X_test, Y_train, Y_test = train_test_split( X , Y , test_size = 0.2,
