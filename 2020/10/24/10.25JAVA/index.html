@@ -212,6 +212,10 @@ String str2 = new String(array);</code></pre>
 <p>3.根据字节数组创建对应的字符串：public String(byte[] array);</p>
 <pre><code>byte[] array1 = &#123;97,98,99&#125;;
 String str3 = new String(array1);</code></pre>
+<p>注意：</p>
+<pre><code>int[] strInt = &#123;97,98,99&#125;;
+String str = new String(String.valueOf(strInt));//返回地址
+System.out.println(str);//[I@1b6d3586</code></pre>
 <h2 id="四-常量池"><a href="#四-常量池" class="headerlink" title="四.常量池"></a>四.常量池</h2><p><img src="https://i.loli.net/2020/10/24/zsKTC6w1mbq39xk.png"><br>1.一个字符串对象在堆中创建后，然后指向一个byte数组存储字符<br>2.程序当中直接写上的双引号字符串，就在字符串常量池中，而通过数组创建的字符串并不在常量池当中<br>3.对于引用类型来说，==比较的是地址值比较</p>
 <pre><code>String str1A = &quot;abc&quot;;
 String str1B = &quot;abc&quot;;

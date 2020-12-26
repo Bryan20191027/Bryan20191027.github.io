@@ -152,89 +152,114 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.loli.net/2020/10/04/eFtPxDQASR3akcU.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/10/24  JAVA学习笔记</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2020/11/17  JAVA学习笔记  Class</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="一-导入包"><a href="#一-导入包" class="headerlink" title="一.导入包"></a>一.导入包</h2><pre><code>import java.util.Arrays;  //导入包
-//1.导包
-//import 包名称.类名称
-import javaClass.Student;
-//2.创建对象，使用类
-//类名称 对象名 = new 类名称();
-//3.使用
-//对象名.成语方法/变量;</code></pre>
-<h2 id="二-Java类内存分布"><a href="#二-Java类内存分布" class="headerlink" title="二.Java类内存分布"></a>二.Java类内存分布</h2><p><img src="https://i.loli.net/2020/10/24/Vz4IlaX8HCToptM.png"></p>
-<ul>
-<li>将类的内容放入方法区，再放入main函数  </li>
-<li>2.再在栈中调用main函数  </li>
-<li>3.创建一个类的实例即对象，在堆中new一个新的类，放入成员变量，以及成员方法的地址，然后将堆中类的地址放入栈的实例中  </li>
-<li>4.未修改前，通过实例在堆中的地址调用成员变量默认值  </li>
-<li>5.通过地址修改堆中的成员变量值  </li>
-<li>6.调用成员方法，通过栈到堆，堆到方法区的地址将方法区中的类方法压入栈中  </li>
-<li>7.调用后再将方法出栈</li>
+                <h2 id="一-Class类"><a href="#一-Class类" class="headerlink" title="一.Class类"></a>一.Class类</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><ul>
+<li>类结构的描述，每一个类在加载的时候，虚拟机都会根据加载的类创建对应的Class对象</li>
+<li>Class对象是具体类的描述，包含类名、属性、方法、构造方法等，在内存的程序区</li>
 </ul>
-<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3><p>1.两个引用指向同一个对象</p>
-<pre><code>Student stu2 = stu1;</code></pre>
-<p>相当于把地址传给了新的对象，共同指向堆中的一个实例</p>
-<p>2.将类对象作为参数传递给函数或者是作为函数的返回值，实际上是将对象的地址值进行了传递</p>
-<h2 id="三-局部变量与成员变量比较"><a href="#三-局部变量与成员变量比较" class="headerlink" title="三.局部变量与成员变量比较"></a>三.局部变量与成员变量比较</h2><p>1.定义的位置不一样<br>局部变量：在方法内部<br>成员变量：在方法的外部，直接写在类当中</p>
-<p>2.作用范围不一样<br>局部变量：只有方法中才能使用，出了方法后不能再使用<br>成员变量：整个类都可以通用</p>
-<p>3.默认值不一样：<br>局部变量：无默认值<br>成员变量：会有默认值  </p>
-<p>4.内存的位置不一样<br>局部变量：位于栈<br>成员变量：位于堆  </p>
-<p>5.生命周期不一样<br>局部变量：随着方法进栈而诞生，随着方法出栈而消失<br>成员变量：随着对象创建而诞生，随着对象被解构而消失</p>
-<h2 id="三-类的注意事项"><a href="#三-类的注意事项" class="headerlink" title="三.类的注意事项"></a>三.类的注意事项</h2><p>1.面向对象的三大特征：继承、封装、多态  </p>
-<p>2.间接访问或者修改private关键字修饰成员变量，需要使用Getter/Setter方法<br>命名规则为setXXX或者getXXX，如果是boolean变量则写成isXXX的形式  </p>
-<p>3当方法的局部变量和类的成员变量同名时，根据就近原则，优先使用局部变量<br>通过谁调用的方法，谁就是this</p>
-<h2 id="四-类构造方法与类的组成部分"><a href="#四-类构造方法与类的组成部分" class="headerlink" title="四.类构造方法与类的组成部分"></a>四.类构造方法与类的组成部分</h2><p>格式：public 类名称(参数类型 参数名称){}  </p>
-<pre><code>public Student()
-&#123;
-    System.out.println(&quot;!!&quot;);
-&#125;</code></pre>
-<p>注意事项：  </p>
-<ul>
-<li>1.构造方法一定不要有返回值类型，void也不需要写  </li>
-<li>2.不能return返回值  </li>
-<li>3.如果没有任何构造方法显式定义，那么编译器将会自动定义一个构造方法，没有参数，不做任何事情  </li>
-<li>4.一旦编写了一个构造方法，编译器就不再自动定义构造方法    </li>
+<h3 id="获取Class对象的方法："><a href="#获取Class对象的方法：" class="headerlink" title="获取Class对象的方法："></a>获取Class对象的方法：</h3><ul>
+<li>Class.forName(“类全限定名”)，在动态加载一个类的时候使用，因为类名是在运行时确定的<br>  需要throws ClassNotFoundException</li>
+<li>类名.class:返回类名，类名在程序编译时确定</li>
+<li>对象名.getClass():返回实例的类型，对实例化对象调用，该方法在Object中定义</li>
 </ul>
-<p>一个标准的类包含四部分  </p>
-<ul>
-<li>1.所有的成员变量用private关键词修饰  </li>
-<li>2.为所有成员变量定义一对Getter/Setter的方法  </li>
-<li>3.编写一个无参数的构造方法  </li>
-<li>4.编写一个全参数的构造方法</li>
+<p>实例代码：</p>
+<pre><code>System.out.println(Class.forName(&quot;Person&quot;));
+System.out.println(Person.class);
+
+Person p1 = new Person(12,&quot;no&quot;);
+System.out.println(p1.getClass());
+//输出均为class Person</code></pre>
+<h2 id="二-创建（实例化）对象的方式"><a href="#二-创建（实例化）对象的方式" class="headerlink" title="二.创建（实例化）对象的方式"></a>二.创建（实例化）对象的方式</h2><ul>
+<li><p>用new语句创建对象(最常见）</p>
+</li>
+<li><p>通过工厂方法返回对象</p>
+<pre><code>  String str = String.valueOf(23); </code></pre>
+</li>
+<li><p>运用反射手段,调用java.lang.Class或者java.lang.reflect.Constructor类的newInstance()实例方法</p>
+<pre><code>  Object obj = Class.forName(&quot;java.lang.Object&quot;).newInstance(); 
+  //需要throws ClassNotFoundException, IllegalAccessException, InstantiationException
+  bject obj = Class.forName(&quot;Person&quot;).newInstance();
+  System.out.println(obj.getClass());//输出class Person，而非Object</code></pre>
+</li>
+<li><p>调用对象的clone()方法。<br>  需要类implements Cloneable，并且实现clone()方法</p>
+<pre><code>  //部分实例代码：
+  //Person类中的clone方法：
+  public class Person implements Cloneable&#123;
+      //...
+      public Object clone()&#123;
+          Person o = null;
+          try&#123;
+              o = (Person)super.clone();
+          &#125;catch(CloneNotSupportedException e)&#123;
+              e.printStackTrace();
+          &#125;
+          return o;
+      &#125;
+      //...
+  &#125;
+
+  //clone()使用，需要转型
+  Person p2 = (Person) p1.clone();</code></pre>
+</li>
+<li><p>通过I/O流（包括反序列化），如运用反序列化手段，调用java.io.ObjectInputStream对象的 readObject()方法。</p>
+</li>
 </ul>
-<h2 id="五-static修饰符-重点）"><a href="#五-static修饰符-重点）" class="headerlink" title="五.static修饰符(重点）"></a>五.static修饰符(重点）</h2><p>定义：多个对象共享同一个相同数据，只在类当中保存唯一一份，内容不再属于对象自己而是属于类的</p>
-<p>1.修饰成员方法</p>
-<pre><code>public static void methodStatic()&#123;
-    System.out.println(&quot;Static&quot;);
-&#125;</code></pre>
-<p>非静态方法需通过对象调用<br>静态方法则可以推荐对象或是类名调用（推荐）  </p>
-<pre><code>Student.methodStatic();</code></pre>
-<p>对于本类当中的静态方法进行调用，可以省略类的名称  </p>
-<p>(1)静态方法可以访问静态变量，不能直接访问非静态<br>原因：因为在内存当中是现有的静态内容后有非静态内容  </p>
-<p>(2)静态方法中不能用this<br>原因：this代表当前对象，通过谁调用的方法谁就是当前对象，而静态方法编译时是调用的类的方法，没有对象</p>
-<p>2.静态代码块</p>
-<pre><code>static&#123;
-    System.out.println(&quot;!!!!&quot;);
+<h2 id="三-相关"><a href="#三-相关" class="headerlink" title="三.相关"></a>三.相关</h2><h3 id="getMethods"><a href="#getMethods" class="headerlink" title="getMethods()"></a>getMethods()</h3><p>实例代码：</p>
+<pre><code>Class personClass = p1.getClass();
+Method[] ms = personClass.getMethods();
+    for(Method method:ms)&#123;
+        System.out.println(method.getName());
+    &#125;
+//需要import java.lang.reflect.Method;
+//输出clone
+    getName
+    setName
+    setAge
+    getAge
+    wait
+    wait
+    wait
+    equals
+    toString
+    hashCode
+    getClass
+    notify
+    notifyAll</code></pre>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><pre><code>Student stu=new student();//等同于
+Student stu=Student.class.newInstance();
+stu=Class.forName(com.xinzhan.chapter3.Student&quot;).newInstance();</code></pre>
+<h3 id="JDK9的反射实现"><a href="#JDK9的反射实现" class="headerlink" title="JDK9的反射实现"></a>JDK9的反射实现</h3><pre><code>class.getDeclaredConstructor().newInstance()</code></pre>
+<p><img src="https://i.loli.net/2020/12/11/3r9wVcNiX8kWjYq.png"></p>
+<h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ol>
+<li>JVM对于每一个要使用的类首先要用类装载器将类的字节码数据装载</li>
+<li>类装载器根据类名来定位和装载字节码数据，返回给JVM</li>
+<li>类加载器将.class文件内容转化为JVM能接收的字节码数据</li>
+<li>JVM将字节码数据编译为可运行代码存储载内存，并索引保存在HashTable</li>
+</ol>
+<h3 id="Java-lang-ClassLoader基类的loadClass方法加载类："><a href="#Java-lang-ClassLoader基类的loadClass方法加载类：" class="headerlink" title="Java.lang.ClassLoader基类的loadClass方法加载类："></a>Java.lang.ClassLoader基类的loadClass方法加载类：</h3><ul>
+<li>从本地文件系统加载class文件</li>
+<li>从jar加载class文件</li>
+<li>通过网络加载class文件</li>
+<li>类加载器本身通过java内嵌的Bootstrap的装载</li>
+</ul>
+<h3 id="static块"><a href="#static块" class="headerlink" title="static块"></a>static块</h3><ul>
+<li>Class.forName()加载后再调用static块进行静态初始化</li>
+<li>类名.class只对类加载，不调用static块，也不对静态变量初始化</li>
+</ul>
+<p>实例代码：</p>
+<pre><code>static char sex= &#39;F&#39;;
+static int select;
+static&#123;
+    if(sex == &#39;F&#39;)&#123;
+        select = 1;
+    &#125;else&#123;
+        select = 2;
+    &#125;
 &#125;
-//当第一次用到本类时，静态代码块执行唯一一次
-//静态内容总是优先于非静态,所以会先执行静态代码块中内容然后再执行构造函数内容</code></pre>
-<p>3.静态成员变量<br>通过某一对象修改该静态变量会影响到其他对象的该变量。</p>
-<h2 id="六-Arrays常用方法"><a href="#六-Arrays常用方法" class="headerlink" title="六.Arrays常用方法"></a>六.Arrays常用方法</h2><p>1.toString()<br>将参数数组变成字符串</p>
-<pre><code>int[] array = &#123;10,20,30,40&#125;;
-System.out.println(Arrays.toString(array));</code></pre>
-<p>2.sort()</p>
-<ul>
-<li>按照默认升序对数组的元素进行排序</li>
-<li>如果是字符串进行sort则会按照字母升序</li>
-<li>如果是自定义类型，需要有Comparable或者Comparator接口的支持  </li>
-</ul>
-<p>示例代码：</p>
-<pre><code>String[] array2 = &#123;&quot;bbb&quot;,&quot;aaa&quot;,&quot;ccc&quot;&#125;;
-Arrays.sort(array2);
-System.out.println(Arrays.toString(array2));</code></pre>
+//所使用变量均为静态</code></pre>
 
             </div>
 
@@ -297,8 +322,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://example.com/2020/10/24/10.24JAVA/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://example.com/2020/10/24/10.24JAVA/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://example.com/2020/12/11/12.11JAVA%20-%20Class/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2020/12/11/12.11JAVA%20-%20Class/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
